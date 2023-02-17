@@ -6,7 +6,6 @@ import csv
 import base64
 import difflib
  
-     
 #@st.cache
 def raw_data(input_file):
    df=pd.read_csv(input_file, encoding = "ISO-8859-1")
@@ -16,17 +15,16 @@ def raw_data(input_file):
 #######################glabal variables
 #define functions
 
-
 ##############################
 st.set_page_config(layout="wide", initial_sidebar_state="auto")
 col11, col12 = st.columns((3,1))
 with col11:
-  title_1="Data Excursion"
+  title_1="TOEFL iBT registration vs test taken volume "
   st.markdown(f'<h1 style="text-align: center;color: green;">{title_1}</h1>',unsafe_allow_html=True)
-  subj_1="-- XXX Project"
+  subj_1="-- Fical year 2020 to 2023"
   st.markdown(f'<h2 style="text-align: center;color: green;">{subj_1}</h2>',unsafe_allow_html=True) 
-  st.markdown ("By: Maggie Xiong")
-  st.markdown("Data file include 1169 studnets reponse time and raw score to each of the 20 items in the exampnation. Response time of the first item is missing. Total reponse time and score, together with geographical information and age are also provided. ")
+  st.markdown ("By: Sarah Rhame")
+  st.markdown("Data file include 6694 registraion and 7105 test-taken records for each region/country/year/month from fical year 2020 to 2022  ")
    
 with col12:
   title_11="Hello! I am Alexa. Can I help you?"
@@ -43,7 +41,7 @@ with col12:
         st.write ("Sorry, I am not sure! Please contact xxiong@ets.org")
          
 # read in data
-df_ori=raw_data("./data/data_2021_2022.csv")
+df_ori=raw_data("./data/DataReorg_output.xlsx")
 df_ori['rt_gs_1']=""
 df_ori['state_corr']=""
 df_ori['state_abbr']=""
