@@ -19,7 +19,7 @@ def raw_data(input_file):
 st.set_page_config(layout="wide", initial_sidebar_state="auto")
 col11, col12 = st.columns((3,1))
 with col11:
-  title_1="TOEFL iBT registration vs test taken volume "
+  title_1="TOEFL iBT registration vs test-taken monthly volume "
   st.markdown(f'<h1 style="text-align: center;color: green;">{title_1}</h1>',unsafe_allow_html=True)
   subj_1="-- Fical year 2020 to 2023"
   st.markdown(f'<h2 style="text-align: center;color: green;">{subj_1}</h2>',unsafe_allow_html=True) 
@@ -66,25 +66,55 @@ for i,state_t in enumerate(df_ori.state):
 with col11:  
   with st.expander("Registraion volume view"): 
       st.write("""
-        Please select which **region** you want to view. 
+        Please select which **region and country** you want to view. 
         """)
-      state_1=df_ori_1['state_abbr'].drop_duplicates()
-      default_state=['All']
-      default_state.extend(state_1)
-      state_choice=st.multiselect("", default_state)
-      if ('All' in state_choice):
-        df_ori_2=df_ori_1
+      df_ori_11=df_ori[df_ori['Mode']="Registration"]
+      Region_C1=df_ori_11['Region'].drop_duplicates()
+      default_region1=['All region']
+      default_region1.extend(Region_C1)
+      region_choice=st.multiselect("", default_Region1)
+      if ('All region' in region_choice1):
+        df_ori_12=df_ori_11
       else:
-        df_ori_2=df_ori_1.query("state_abbr in @state_choice")
-      st.dataframe(df_ori_2)
-download_1=col11.button('Download the file')
-#if download_1:
-#    st.markdown(table_download(df_ori_2), unsafe_allow_html=True)
+        df_ori_12=df_ori_11.query("Region in @region_choice1")
+      st.dataframe(df_ori_12)
+      Country_C1=df_ori_11['Country'].drop_duplicates()
+      default_country1=['All country']
+      default_country1.extend(Country_C1)
+      country_choice1=st.multiselect("", default_country1)
+      if ('All country' in country_choice1):
+        df_ori_13=df_ori_12
+      else:
+        df_ori_13=df_ori_12.query("Country in @country_choice1")
+      st.dataframe(df_ori_13)
+  with st.expander("Test-Taken volume view"): 
+      st.write("""
+        Please select which **region and country** you want to view. 
+        """)
+      df_ori_21=df_ori[df_ori['Mode']="TestTaken"]
+      Region_C2=df_ori_21['Region'].drop_duplicates()
+      default_region2=['All region']
+      default_region2.extend(Region_C2)
+      region_choice2=st.multiselect("", default_Region2)
+      if ('All region' in region_choice2):
+        df_ori_22=df_ori_21
+      else:
+        df_ori_22=df_ori_21.query("Region in @region_choice2")
+      st.dataframe(df_ori_22)
+      Country_C2=df_ori_21['Country'].drop_duplicates()
+      default_country2=['All country']
+      default_country2.extend(Country_C2)
+      country_choice2=st.multiselect("", default_country2)
+      if ('All country' in country_choice2):
+        df_ori_23=df_ori_22
+      else:
+        df_ori_23=df_ori_22.query("Country in @country_choice")
+      st.dataframe(df_ori_23)
          
 # Filters
 df_1=df_ori
 st.sidebar.markdown("## Define **filters:**")
-score_1, score_2 = st.sidebar.slider("Total score: ", min(df_ori.sum_score), max(df_ori.sum_score), (min(df_ori.sum_score), max(df_ori.sum_score)))
+vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.sum_score), max(df_ori.sum_score), (min(df_ori.sum_score), max(df_ori.sum_score)))
 df_1=df_1.query("sum_score>=@score_1 and sum_score<=@score_2")
 time_1, time_2 = st.sidebar.slider("Total response time (note: response time for the first item is missing hence excluded",  min(df_ori.rt_total), max(df_ori.rt_total), (min(df_ori.rt_total), max(df_ori.rt_total)))    
 df_1=df_1.query("rt_total>=@time_1 and rt_total<=@time_2")
