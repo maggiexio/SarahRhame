@@ -63,14 +63,10 @@ for i,state_t in enumerate(df_ori.state):
       result=[s for f in state_t.split(',') for s in name_list_up if is_similar(f,s, 0.8)]
     df_ori['state_corr'][i]=",".join(result)
 
-  
-for i, state_ori in enumerate(df_ori.state_corr):
-  df_ori['state_abbr'][i], df_ori['country_abbr'][i] = Find_State_Country(state_ori)
-df_ori_1=df_ori.iloc[:,[45,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,46,47,44,48,49]]  
 with col11:  
-  with st.expander("Data view"): 
+  with st.expander("Registraion volume view"): 
       st.write("""
-        Please select which **state** data you want to view. 
+        Please select which **region** you want to view. 
         """)
       state_1=df_ori_1['state_abbr'].drop_duplicates()
       default_state=['All']
