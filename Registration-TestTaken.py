@@ -87,7 +87,8 @@ with col11:
       else:
         df_ori_13=df_ori_12.query("Country in @country_choice1")
       st.dataframe(df_ori_13)
-  with st.expander("Test-Taken volume view"): 
+
+      with st.expander("Test-Taken volume view"): 
       st.write("""
         Please select which **region and country** you want to view. 
         """)
@@ -115,19 +116,31 @@ with col11:
 df_1=df_ori
 st.sidebar.markdown("## Define **filters:**")
 vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.sum_score), max(df_ori.sum_score), (min(df_ori.sum_score), max(df_ori.sum_score)))
-df_1=df_1.query("sum_score>=@score_1 and sum_score<=@score_2")
-time_1, time_2 = st.sidebar.slider("Total response time (note: response time for the first item is missing hence excluded",  min(df_ori.rt_total), max(df_ori.rt_total), (min(df_ori.rt_total), max(df_ori.rt_total)))    
-df_1=df_1.query("rt_total>=@time_1 and rt_total<=@time_2")
-age_1, age_2 = st.sidebar.slider("Age range",  min(df_ori.age), max(df_ori.age), (min(df_ori.age), max(df_ori.age)))    
-df_1=df_1.query("age>=@age_1 and age<=@age_2")
-#sex=df_1['gender'].drop_duplicates()
-#mode=df_1['home_computer'].drop_duplicates()
-sex_choice = st.sidebar.selectbox('Select gender:', ['All', 'Male', 'Female'])
-if sex_choice != "All":
-  df_1=df_1.query("gender==@sex_choice")
-mode_choice = st.sidebar.radio('Whether take the test at home:', ['All', 'Yes', 'No'])
-if mode_choice != "All":
-  df_1=df_1.query("home_computer==@mode_choice")
+df_1=df_1.query("sum_score>=@vol_1 and sum_score<=@vol_2")
+
+mod_choice=df_1['Mode'].drop_duplicates()
+mod_choice.insert(0, "All")
+reg_choice=df_1['Region'].drop_duplicates()
+reg_choice.insert(0, "All")
+cty_choice=df_1['Country'].drop_duplicates()
+cty_choice.insert(0, "All")
+yy_choice=df_1['Year'].drop_duplicates()
+yy_choice.insert(0, "All")
+mon_choice=df_1['Month'].drop_duplicates()
+mon_choice.insert(0, "All")
+#sex_choice = st.sidebar.selectbox('Select gender:', ['All', 'Male', 'Female'])
+
+if mod_choice != "All":
+  df_1=df_1.query("Mode==@mod_choice")
+if reg_choice != "All":
+  df_1=df_1.query("region==@reg_choice")
+#mode_choice = st.sidebar.radio('Whether take the test at home:', ['All', 'Yes', 'No'])
+if cty_choice != "All":
+  df_1=df_1.query("Country==@cty_choice")
+if yy_choice != "All":
+  df_1=df_1.query("Year==@yy_choice")
+if mon_choice != "All":
+  df_1=df_1.query("Month==@mon_choice")
 
 
 # figures display
