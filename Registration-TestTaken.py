@@ -81,7 +81,7 @@ with col11:
       Region_C2=sorted(Region_C2)
       default_region2=['All region']
       default_region2.extend(Region_C2)
-      region_choice2=st.multiselect("", default_Region2)
+      region_choice2=st.multiselect("", default_region2)
       if ('All region' in region_choice2):
         df_ori_22=df_ori_21
       else:
