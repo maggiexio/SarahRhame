@@ -107,6 +107,7 @@ df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 mod_choice=df_1['Mode'].drop_duplicates()
 default_mod=['All']
 mod_choice=default_mod.extend(mod_choice)
+mod_choice.to_list()
 reg_choice=df_1['Region'].drop_duplicates()
 default_reg=['All']
 reg_choice=default_reg.extend(reg_choice)
@@ -120,7 +121,7 @@ mon_choice=df_1['Month'].drop_duplicates()
 default_mon=['All']
 mon_choice=default_mon.extend(mon_choice)
 
-mod_select = st.sidebar.selectbox('Select gender:', mod_choice.to_list())
+mod_select = st.sidebar.selectbox('Select gender:', mod_choice)
 if mod_choice != "All":
   df_1=df_1.query("Mode==@mod_choice")
   
