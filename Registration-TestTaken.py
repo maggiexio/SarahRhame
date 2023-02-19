@@ -8,6 +8,9 @@ import difflib
  
 #######################glabal variables
 #define functions
+def raw_data(input_file, sheetname):
+  df=pd.read_excel(open(input_file, 'rb'), sheet_name=sheetname )
+  return df
 
 ##############################
 st.set_page_config(layout="wide", initial_sidebar_state="auto")
