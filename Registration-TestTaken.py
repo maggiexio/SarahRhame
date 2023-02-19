@@ -121,7 +121,7 @@ mon_choice=df_1['Month'].drop_duplicates()
 default_mon=['All']
 mon_choice=default_mon.extend(mon_choice)
 
-mod_select = st.sidebar.selectbox('Select gender:', [mod_choice])
+mod_select = st.sidebar.selectbox('Select mode:', [mod_choice.tolist()])
 if mod_choice != "All":
   df_1=df_1.query("Mode==@mod_choice")
   
