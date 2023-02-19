@@ -42,15 +42,11 @@ with col12:
          
 # read in data
 df_ori=raw_data("./data/DataReorg_output.xlsx")
-df_ori['rt_gs_1']=""
-df_ori['state_corr']=""
-df_ori['state_abbr']=""
-df_ori['country_abbr']=""
-df_ori['age_group']=""
-bins= [0,20,35,55,80]
-labels = ['Teen(<20)','Young Adult(20,35)','Mid-aged Adult(35-55)','Older Adult(>55)']
-df_ori['age_group'] = pd.cut(df_ori['age'], bins=bins, labels=labels, right=False)
-df_ori['age_group'] = df_ori['age_group'].cat.add_categories('unknown').fillna('unknown')  
+#df_ori['age_group']=""
+#bins= [0,20,35,55,80]
+#labels = ['Teen(<20)','Young Adult(20,35)','Mid-aged Adult(35-55)','Older Adult(>55)']
+#df_ori['age_group'] = pd.cut(df_ori['age'], bins=bins, labels=labels, right=False)
+#df_ori['age_group'] = df_ori['age_group'].cat.add_categories('unknown').fillna('unknown')  
 
 state_list_up=[t.upper() for t in state_list]
 country_list_up=[t.upper() for t in country_list]
@@ -143,45 +139,47 @@ if mon_choice != "All":
   df_1=df_1.query("Month==@mon_choice")
 
 
-# figures display
-rt_diff = (df_1["rt_total"].max() - df_1["rt_total"].min()) / 10
-df_1["rt_scale"] = (df_1["rt_total"] - df_1["rt_total"].min()) / rt_diff + 1
-df_1["rt_scale"] = pow(df_1["rt_scale"],2)
+# figures display, based on file df_1 which is data after filters apply
+N_diff = (df_1["N"].max() - df_1["N"].min()) / 10
+df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
+df_1["N_scale"] = pow(df_1["N_scale"],2)
 with col11:  
-  title_ch1='Data Visualizaion'
+  title_ch1='Volume Data Visualizaion'
   st.markdown(f'<h3 style="text-aligh: center;color: green;">{title_ch1}</h3>',unsafe_allow_html=True)
   title_ch2='****2D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
-  with st.expander("Histogram:   distributions of sum score for male/female, under different test-taking mode: take the test at home or not "):    
-    fig_hist1=px.histogram(df_1, x='sum_score', color='gender', facet_col='home_computer', marginal='box')
+  
+  with st.expander("Histogram:   distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
+    fig_hist1=px.histogram(df_1, x=c('Year', 'Month'), color=c('Region', 'Country'), facet_col='Mode', marginal='box')
     st.plotly_chart(fig_hist1,  use_container_width=True, height=600)
   with st.expander("Bar charts:    sum score distribution for each age group"): 
-    sorted_df = df_1.sort_values(by='age')
+    sorted_df = df_1.sort_values(by=c('Region', 'Country', 'Year', 'Month'))
     sorted_df = sorted_df.reset_index(drop=True)
     opac = st.text_input('Opacity(0-1)', '0.8')
-    fig_bar1=px.bar(sorted_df, y='sum_score', color='age_group', facet_row='age_group', opacity=float(opac), facet_row_spacing=0.01)
+    fig_bar1=px.bar(sorted_df, y='N', color=c('Region', 'Country', 'Year', 'Month'), facet_row='Mode', opacity=float(opac), facet_row_spacing=0.01)
     st.plotly_chart(fig_bar1, use_container_width=True, height=400)
-  with st.expander("Animation:    display the sum score pattern across states and the relationship with age"):  
-    fig_ani1=px.bar(df_1, x='age_group', animation_frame='state_abbr', color='gender')
+    
+  with st.expander("Animation:    display the volume pattern for each region/country/year/month"):  
+    fig_ani1=px.bar(df_1, y='N', animation_frame=c('Region', 'Country', 'Year', 'Month')', color='Mode')
     fig_ani1.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
-    fig_ani2=px.scatter(df_1, y='sum_score', x='age', animation_frame='state_abbr', color='gender', size='rt_scale', size_max=60)
+    fig_ani2=px.scatter(df_1, y='N', x=c('Year', 'Month'), animation_frame=c('Region', 'Country'), color='Mode', size='N_scale', size_max=60)
     fig_ani2.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
-  with st.expander("Pie Charts:    check sum score distribution under country and state"):    
-    fig_3=px.sunburst(df_1, color='sum_score',  path=['country_abbr','state_abbr'])
+  with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
+    fig_3=px.sunburst(df_1, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_3,   use_container_width=True, height=600)
-  with st.expander("Tree Map:    check total response time distribution under country and state"):    
-    fig_tree=px.treemap(df_1, color='rt_total',  path=['country_abbr','state_abbr'])
+  with st.expander("Tree Map:    check volume distribution for each region/country/year/month"):    
+    fig_tree=px.treemap(df_1, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree, use_container_width=True, height=600)    
-  with st.expander("choropleth map:    check score distribution from a choropleth map"):
-    mean_df = df_1.groupby("country_abbr").mean()
+  with st.expander("choropleth map:    check volume distribution from a choropleth map"):
+    mean_df = df_1.groupby("Country\").mean()
     mean_df.reset_index(inplace=True)
-    mean_df = mean_df.rename(columns = {'index':'country_abbr'})
-    fig_4=px.choropleth(mean_df, color='sum_score',  locations='country_abbr', locationmode='ISO-3')
+    mean_df = mean_df.rename(columns = {'index':'Country'})
+    fig_4=px.choropleth(mean_df, color='N',  locations='Country', locationmode='ISO-3')
     st.plotly_chart(fig_4,  use_container_width=True, height=600)
   title_ch3='****3D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch3}</h4>',unsafe_allow_html=True)
-  with st.expander("Check the relationship between total score, age, and test-taking mode (home taking or not) in an interactive 3D way"): 
-    fig_scatter1=px.scatter_3d(df_1, y='sum_score', x='age', z='home_computer', color='gender', size='rt_scale', size_max=50)
+  with st.expander("Check the relationship between volume distribution for each region/country/year/month and test-taking mode (registration vs test taken) in an interactive 3D way"): 
+    fig_scatter1=px.scatter_3d(df_1, y='N', x=c('Year', 'Month'), z=c('Region', 'Country'), color='Mode', size='N_scale', size_max=50)
     st.plotly_chart(fig_scatter1,  use_container_width=True, height=3000)
