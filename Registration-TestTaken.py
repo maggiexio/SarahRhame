@@ -95,7 +95,7 @@ with col11:
       if ('All country' in country_choice2):
         df_ori_23=df_ori_22
       else:
-        df_ori_23=df_ori_22.query("Country in @country_choice")
+        df_ori_23=df_ori_22.query("Country in @country_choice2")
       st.dataframe(df_ori_23)
          
 # Filters
