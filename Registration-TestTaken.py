@@ -48,17 +48,6 @@ df_ori=raw_data("./data/DataReorg_output.xlsx")
 #df_ori['age_group'] = pd.cut(df_ori['age'], bins=bins, labels=labels, right=False)
 #df_ori['age_group'] = df_ori['age_group'].cat.add_categories('unknown').fillna('unknown')  
 
-state_list_up=[t.upper() for t in state_list]
-country_list_up=[t.upper() for t in country_list]
-name_list_up = list(set(state_list_up) | set(country_list_up))
-
-for i,state_t in enumerate(df_ori.state):
-    state_t=state_t.upper()
-    result=[s for f in state_t.split() for s in name_list_up if is_similar(f,s, 0.8)]
-    if len(result)==0:
-      result=[s for f in state_t.split(',') for s in name_list_up if is_similar(f,s, 0.8)]
-    df_ori['state_corr'][i]=",".join(result)
-
 with col11:  
   with st.expander("Registraion volume view"): 
       st.write("""
