@@ -54,7 +54,7 @@ with col11:
       Region_C1=df_ori_11['Region'].drop_duplicates()
       default_region1=['All region']
       default_region1.extend(Region_C1)
-      region_choice1=st.multiselect("", default_Region1)
+      region_choice1=st.multiselect("", default_region1)
       if ('All region' in region_choice1):
         df_ori_12=df_ori_11
       else:
