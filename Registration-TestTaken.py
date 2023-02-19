@@ -105,6 +105,8 @@ vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.N), max(df
 df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 
 mod_choice=df_1['Mode'].drop_duplicates()
+default_mod=['All']
+mod_choice=default_mod.extend(mod_choice)
 mod_choice.insert(0, "All")
 reg_choice=df_1['Region'].drop_duplicates()
 reg_choice.insert(0, "All")
