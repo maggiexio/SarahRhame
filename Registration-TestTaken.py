@@ -55,7 +55,7 @@ with col11:
       Region_C1=sorted(Region_C1)
       default_region1=['All region']
       default_region1.extend(Region_C1)
-      region_choice1=st.multiselect("", default_region1)
+      region_choice1=st.multiselect("11", default_region1)
       if ('All region' in region_choice1):
         df_ori_12=df_ori_11
       else:
@@ -65,7 +65,7 @@ with col11:
       Country_C1=sorted(Country_C1)
       default_country1=['All country']
       default_country1.extend(Country_C1)
-      country_choice1=st.multiselect("", default_country1)
+      country_choice1=st.multiselect("12", default_country1)
       if ('All country' in country_choice1):
         df_ori_13=df_ori_12
       else:
@@ -81,7 +81,7 @@ with col11:
       Region_C2=sorted(Region_C2)
       default_region2=['All region']
       default_region2.extend(Region_C2)
-      region_choice2=st.multiselect("", default_region2)
+      region_choice2=st.multiselect("21", default_region2)
       if ('All region' in region_choice2):
         df_ori_22=df_ori_21
       else:
@@ -91,7 +91,7 @@ with col11:
       Country_C2=sorted(Country_C2)
       default_country2=['All country']
       default_country2.extend(Country_C2)
-      country_choice2=st.multiselect("", default_country2)
+      country_choice2=st.multiselect("22", default_country2)
       if ('All country' in country_choice2):
         df_ori_23=df_ori_22
       else:
