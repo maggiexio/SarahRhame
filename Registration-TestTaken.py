@@ -55,7 +55,7 @@ with col11:
       Region_C1=sorted(Region_C1)
       default_region1=['All region']
       default_region1.extend(Region_C1)
-      region_choice1=st.multiselect("11", default_region1)
+      region_choice1=st.multiselect("What registration region(s) you are interested", default_region1)
       if ('All region' in region_choice1):
         df_ori_12=df_ori_11
       else:
@@ -65,7 +65,7 @@ with col11:
       Country_C1=sorted(Country_C1)
       default_country1=['All country']
       default_country1.extend(Country_C1)
-      country_choice1=st.multiselect("12", default_country1)
+      country_choice1=st.multiselect("What registration countries you are interested", default_country1)
       if ('All country' in country_choice1):
         df_ori_13=df_ori_12
       else:
@@ -81,7 +81,7 @@ with col11:
       Region_C2=sorted(Region_C2)
       default_region2=['All region']
       default_region2.extend(Region_C2)
-      region_choice2=st.multiselect("21", default_region2)
+      region_choice2=st.multiselect("What test-taken region(s) you are interested", default_region2)
       if ('All region' in region_choice2):
         df_ori_22=df_ori_21
       else:
@@ -91,7 +91,7 @@ with col11:
       Country_C2=sorted(Country_C2)
       default_country2=['All country']
       default_country2.extend(Country_C2)
-      country_choice2=st.multiselect("22", default_country2)
+      country_choice2=st.multiselect("What test-taken countries you are interested", default_country2)
       if ('All country' in country_choice2):
         df_ori_23=df_ori_22
       else:
@@ -101,8 +101,8 @@ with col11:
 # Filters
 df_1=df_ori
 st.sidebar.markdown("## Define **filters:**")
-vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.sum_score), max(df_ori.sum_score), (min(df_ori.sum_score), max(df_ori.sum_score)))
-df_1=df_1.query("sum_score>=@vol_1 and sum_score<=@vol_2")
+vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.N), max(df_ori.N), (min(df_ori.N), max(df_ori.N)))
+df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 
 mod_choice=df_1['Mode'].drop_duplicates()
 mod_choice.insert(0, "All")
