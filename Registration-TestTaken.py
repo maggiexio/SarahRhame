@@ -6,12 +6,6 @@ import csv
 import base64
 import difflib
  
-#@st.cache
-def raw_data(input_file):
-   df=pd.read_csv(input_file, encoding = "ISO-8859-1")
-#  df=pd.read_csv(input_file)
-   return df
-
 #######################glabal variables
 #define functions
 
