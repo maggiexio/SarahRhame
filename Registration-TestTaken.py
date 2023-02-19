@@ -125,7 +125,7 @@ mon_choice=default_mon.extend(mon_choice)
 if mod_choice != "All":
   df_1=df_1.query("Mode==@mod_choice")
 if reg_choice != "All":
-  df_1=df_1.query("region==@reg_choice")
+  df_1=df_1.query("Region==@reg_choice")
 #mode_choice = st.sidebar.radio('Whether take the test at home:', ['All', 'Yes', 'No'])
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_choice")
