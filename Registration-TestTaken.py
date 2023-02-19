@@ -46,7 +46,7 @@ df_ori=raw_data("./data/DataReorg_output.xlsx", "2020-2023")
 #df_ori['age_group'] = df_ori['age_group'].cat.add_categories('unknown').fillna('unknown')  
 
 with col11:  
-  with st.expander("Registraion volume view"): 
+  with st.expander("**Registraion volume view**"): 
       st.write("""
         Please select which **region and country** you want to view. 
         """)
@@ -54,7 +54,7 @@ with col11:
       Region_C1=df_ori_11['Region'].drop_duplicates()
       default_region1=['All region']
       default_region1.extend(Region_C1)
-      region_choice=st.multiselect("", default_Region1)
+      region_choice1=st.multiselect("", default_Region1)
       if ('All region' in region_choice1):
         df_ori_12=df_ori_11
       else:
