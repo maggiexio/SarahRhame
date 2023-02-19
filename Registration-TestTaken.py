@@ -64,7 +64,7 @@ with col11:
       st.write("""
         Please select which **region and country** you want to view. 
         """)
-      df_ori_11=df_ori[df_ori['Mode']="Registration"]
+      df_ori_11=df_ori[df_ori['Mode']=="Registration"]
       Region_C1=df_ori_11['Region'].drop_duplicates()
       default_region1=['All region']
       default_region1.extend(Region_C1)
@@ -88,7 +88,7 @@ with col11:
       st.write("""
         Please select which **region and country** you want to view. 
         """)
-      df_ori_21=df_ori[df_ori['Mode']="TestTaken"]
+      df_ori_21=df_ori[df_ori['Mode']=="TestTaken"]
       Region_C2=df_ori_21['Region'].drop_duplicates()
       default_region2=['All region']
       default_region2.extend(Region_C2)
