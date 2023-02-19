@@ -52,6 +52,7 @@ with col11:
         """)
       df_ori_11=df_ori[df_ori['Mode']=="Registration"]
       Region_C1=df_ori_11['Region'].drop_duplicates()
+      Region_C1.sort()
       default_region1=['All region']
       default_region1.extend(Region_C1)
       region_choice1=st.multiselect("", default_region1)
@@ -61,6 +62,7 @@ with col11:
         df_ori_12=df_ori_11.query("Region in @region_choice1")
       st.dataframe(df_ori_12)
       Country_C1=df_ori_11['Country'].drop_duplicates()
+      Country_C1.sort()
       default_country1=['All country']
       default_country1.extend(Country_C1)
       country_choice1=st.multiselect("", default_country1)
@@ -76,6 +78,7 @@ with col11:
         """)
       df_ori_21=df_ori[df_ori['Mode']=="TestTaken"]
       Region_C2=df_ori_21['Region'].drop_duplicates()
+      Region_C2.sort()
       default_region2=['All region']
       default_region2.extend(Region_C2)
       region_choice2=st.multiselect("", default_Region2)
@@ -85,6 +88,7 @@ with col11:
         df_ori_22=df_ori_21.query("Region in @region_choice2")
       st.dataframe(df_ori_22)
       Country_C2=df_ori_21['Country'].drop_duplicates()
+      Country_C2.sort(0
       default_country2=['All country']
       default_country2.extend(Country_C2)
       country_choice2=st.multiselect("", default_country2)
