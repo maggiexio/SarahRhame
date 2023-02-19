@@ -18,7 +18,7 @@ col11, col12 = st.columns((3,1))
 with col11:
   title_1="TOEFL iBT registration vs test-taken monthly volume "
   st.markdown(f'<h1 style="text-align: center;color: green;">{title_1}</h1>',unsafe_allow_html=True)
-  subj_1="-- Fical year 2020 to 2023"
+  subj_1="-- Fiscal year 2020 to 2023"
   st.markdown(f'<h2 style="text-align: center;color: green;">{subj_1}</h2>',unsafe_allow_html=True) 
   st.markdown ("By: Sarah Rhame")
   st.markdown("Data file include 6694 registraion and 7105 test-taken records for each region/country/year/month from fical year 2020 to 2022  ")
@@ -120,13 +120,13 @@ mon_choice=df_1['Month'].drop_duplicates()
 default_mon=['All']
 mon_choice=default_mon.extend(mon_choice)
 
-#sex_choice = st.sidebar.selectbox('Select gender:', ['All', 'Male', 'Female'])
-
+mod_select = st.sidebar.selectbox('Select gender:', mod_choice)
 if mod_choice != "All":
   df_1=df_1.query("Mode==@mod_choice")
+  
 if reg_choice != "All":
   df_1=df_1.query("Region==@reg_choice")
-#mode_choice = st.sidebar.radio('Whether take the test at home:', ['All', 'Yes', 'No'])
+
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_choice")
 if yy_choice != "All":
