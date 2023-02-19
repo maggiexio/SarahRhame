@@ -88,7 +88,7 @@ with col11:
         df_ori_22=df_ori_21.query("Region in @region_choice2")
       st.dataframe(df_ori_22)
       Country_C2=df_ori_21['Country'].drop_duplicates()
-      Country_C2.sort(0
+      Country_C2.sort()
       default_country2=['All country']
       default_country2.extend(Country_C2)
       country_choice2=st.multiselect("", default_country2)
