@@ -107,7 +107,7 @@ df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 mod_choice=df_1['Mode'].drop_duplicates()
 default_mod=['All']
 mod_choice=default_mod.extend(mod_choice)
-print(type(mod_choice.tolist()))
+print(mod_choice.tolist())
 reg_choice=df_1['Region'].drop_duplicates()
 default_reg=['All']
 reg_choice=default_reg.extend(reg_choice)
