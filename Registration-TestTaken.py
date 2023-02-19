@@ -52,7 +52,7 @@ with col11:
         """)
       df_ori_11=df_ori[df_ori['Mode']=="Registration"]
       Region_C1=df_ori_11['Region'].drop_duplicates()
-      Region_C1.sort()
+      Region_C1=sorted(Region_C1)
       default_region1=['All region']
       default_region1.extend(Region_C1)
       region_choice1=st.multiselect("", default_region1)
