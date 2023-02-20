@@ -151,8 +151,9 @@ with col11:
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
   df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month']
   df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
+  df_1_2020=df_1[df_1['Year']==2020]
   with st.expander("Histogram:   distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
-    fig_hist1=px.histogram(df_1, x='Reg_Cty', y='N', animation_frame='YY_Mon', color='Reg_Cty', facet_col='Mode', marginal='box')
+    fig_hist1=px.histogram(df_1_2020, x='Month', y='N', animation_frame='Region', color='Country', facet_col='Mode', marginal='box')
     st.plotly_chart(fig_hist1,  use_container_width=True, height=1000)
   with st.expander("Bar charts:    sum score distribution for each age group"): 
     sorted_df = df_1.sort_values(by=c('Region', 'Country', 'Year', 'Month'))
@@ -162,7 +163,7 @@ with col11:
     st.plotly_chart(fig_bar1, use_container_width=True, height=400)
     
   with st.expander("Animation:    display the volume pattern for each region/country/year/month"):  
-    fig_ani1=px.bar(df_1, y='N', animation_frame=c('Region', 'Country', 'Year', 'Month'), color='Mode')
+    fig_ani1=px.bar(df_1, title='2020', y='N', animation_frame=c('Region', 'Country', 'Year', 'Month'), color='Mode')
     fig_ani1.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
     fig_ani2=px.scatter(df_1, y='N', x=c('Year', 'Month'), animation_frame=c('Region', 'Country'), color='Mode', size='N_scale', size_max=60)
