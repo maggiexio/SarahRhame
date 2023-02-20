@@ -151,7 +151,7 @@ with col11:
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
   
   with st.expander("Histogram:   distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
-    fig_hist1=px.histogram(df_1, x=['Year', 'Month'], color=['Region', 'Country'], facet_col='Mode', marginal='box')
+    fig_hist1=px.histogram(df_1, x=('Year', 'Month'), y='N', color=('Region', 'Country'), facet_col='Mode', marginal='box')
     st.plotly_chart(fig_hist1,  use_container_width=True, height=600)
   with st.expander("Bar charts:    sum score distribution for each age group"): 
     sorted_df = df_1.sort_values(by=c('Region', 'Country', 'Year', 'Month'))
