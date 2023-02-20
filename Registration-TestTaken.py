@@ -153,7 +153,7 @@ with col11:
   df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
   df_1_2020=df_1[df_1['Year']==2020]
   with st.expander("Histogram:   distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
-    fig_hist1=px.histogram(df_1_2020, x='Month', y='N', animation_frame='Region', color='Country', facet_col='Mode', marginal='box')
+    fig_hist1=px.histogram(df_1, x='YY_mon', y='N', animation_frame='Region', color='Country', facet_col='Mode', marginal='box')
     st.plotly_chart(fig_hist1,  use_container_width=True, height=1000)
   with st.expander("Bar charts:    sum score distribution for each age group"): 
     sorted_df = df_1.sort_values(by=c('Region', 'Country', 'Year', 'Month'))
