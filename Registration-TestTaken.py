@@ -118,7 +118,7 @@ yy_choice.insert(0, 'All')
 default_yy=yy_choice.index('All')
 mon_choice=df_1['Month'].drop_duplicates().tolist()
 mon_choice.insert(0, 'All')
-default_mon=mon_choice..index('All')
+default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 if mod_select != "All":
