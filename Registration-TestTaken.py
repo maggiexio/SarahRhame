@@ -107,31 +107,33 @@ df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 mod_choice=df_1['Mode'].drop_duplicates().tolist()
 mod_choice.insert(0, 'All')
 default_mod=mod_choice.index('All')
-reg_choice=df_1['Region'].drop_duplicates()
-default_reg=['All']
-reg_choice=default_reg.extend(reg_choice)
-cty_choice=df_1['Country'].drop_duplicates()
-default_cty=['All']
-cty_choice=default_cty.extend(cty_choice)
-yy_choice=df_1['Year'].drop_duplicates()
-default_yy=['All']
-yy_choice=default_yy.extend(yy_choice)
-mon_choice=df_1['Month'].drop_duplicates()
-default_mon=['All']
-mon_choice=default_mon.extend(mon_choice)
+reg_choice=df_1['Region'].drop_duplicates().tolist()
+reg_choice.insert(0, 'All')
+default__reg=reg_choice.index('All')
+cty_choice=df_1['Country'].drop_duplicates().tolist()
+cty_choice.insert(0, 'All')
+default_cty=cty_choice.index('All')
+yy_choice=df_1['Year'].drop_duplicates().tolist()
+yy_choice.insert(0, 'All')
+default_yy=yy_choice.index('All')
+mon_choice=df_1['Month'].drop_duplicates().tolist()
+mon_choice.insert(0, 'All')
+default_mon=mon_choice..index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_choice")
-  
-if reg_choice != "All":
+reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg)  
+if reg_select != "All":
   df_1=df_1.query("Region==@reg_choice")
-
+cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_choice")
-if yy_choice != "All":
+yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
+if yy_select != "All":
   df_1=df_1.query("Year==@yy_choice")
-if mon_choice != "All":
+mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
+if mon_select != "All":
   df_1=df_1.query("Month==@mon_choice")
 
 
