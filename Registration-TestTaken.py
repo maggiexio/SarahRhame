@@ -5,6 +5,7 @@ import plotly.express as px
 import csv
 import base64
 import difflib
+from calendar import month_name
  
 #######################glabal variables
 #define functions
@@ -117,8 +118,10 @@ yy_choice=df_1['Year'].drop_duplicates().tolist()
 yy_choice.insert(0, 'All')
 default_yy=yy_choice.index('All')
 mon_choice=df_1['Month'].drop_duplicates().tolist()
-mon_choice=sorted(mon_choice)
+month_lookup = list(month_name)
+sorted(mon_choice, key=month_lookup.index)
 mon_choice.insert(0, 'All')
+
 default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
