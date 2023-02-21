@@ -159,7 +159,7 @@ with col11:
   
   with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
      #figure_hist1 = px.histogram(df_1, x='YY_Mon', y='N', animation_frame='Region', color='Country', 
-                           facet_col='Mode', marginal='box')
+     #                      facet_col='Mode', marginal='box')
     figure_hist1 = px.histogram(df_1, y='N', animation_frame='Region', color='Country', 
                            facet_col='Mode', marginal='box')
      st.plotly_chart(figure_hist1,  use_container_width=True, height=800)
