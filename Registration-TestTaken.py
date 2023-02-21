@@ -168,7 +168,7 @@ df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 df_1['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_1['Month'].str.slice(0, 3)]
 
 df_1_res=df_1[df_1['Mode']=="Registration"]
-df_2_taken=df_1[df_1['Mode']=="TestTaken"]  
+df_1_taken=df_1[df_1['Mode']=="TestTaken"]  
  
 with col11:  
  
