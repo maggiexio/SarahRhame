@@ -207,5 +207,5 @@ with col11:
   title_ch3='****3D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch3}</h4>',unsafe_allow_html=True)
   with st.expander("Check the relationship between volume distribution for each region/country/year/month and test-taking mode (registration vs test taken) in an interactive 3D way"): 
-    fig_scatter1=px.scatter_3d(df_1, y='N', x=('Year', 'Month'), z=('Region', 'Country'), color='Mode', size='N_scale', size_max=50)
+    fig_scatter1=px.scatter_3d(df_1, y='N', x='YY_Mon', z='Reg_Cty', color='Mode', size='N_scale', size_max=50)
     st.plotly_chart(fig_scatter1,  use_container_width=True, height=3000)
