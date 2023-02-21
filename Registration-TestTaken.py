@@ -24,8 +24,9 @@ with col11:
   subj_1="-- Fiscal year 2020 to 2023"
   st.markdown(f'<h2 style="text-align: center;color: green;">{subj_1}</h2>',unsafe_allow_html=True) 
   st.markdown ("By: Sarah Rhame")
-  st.markdown("Original data set include 6694 registraion and 7105 test-taken records worldwide for fiscal years 2020 to 2022. 
-              The following two type of records were removed in the clean data set: 1. 464 records with no volume; 2. 322 records in 2023 March to September.")
+  st.markdown("Original data set include 6694 registraion and 7105 test-taken records worldwide for fiscal years 2021 to 2023 (2020/10 to 2023/2). 
+              The following two type of records were removed in the clean data set: 1. 464 records with no volume; 2. 322 records in 2023 March to September.
+              Therefore, there are 13013 records in the clean data set. ")
    
 with col12:
   title_11="Hello! I am Alexa. Can I help you?"
@@ -43,15 +44,22 @@ with col12:
          
 # read in data
 df_ori_0=raw_data("./data/DataReorg_output.xlsx", "2020-2023")
-df_ori=df_ori_0.dropna()
-df_ori.reset_index(drop=True)
+#remove NA records              
+df_ori_1=df_ori_0.dropna()
+df_ori_1.reset_index(drop=True)
+#remove records of 2023/3 to 2023/9
+df_t=df_ori_1[df_ori_1['Year']==2023]
+df_t=df_t[df_t['Month'].isin (['March','April','May', 'June','July','August', 'September'])]              
+df_ori=pd.concat([df_ori_1, df_t, df_t]).drop_duplicates(keep=False)
+df_ori = df_ori.reset_index(drop=True)
+              
+df_ori['N_group']=""
+bins= [1,200,400,600,800,1000,2000,3000,4000,5000,6000,7000]
+labels = ['(<200)','[200,400)','[400-600)','[600-800)','[800-1000)','[1000-2000)','[2000-3000)','[3000-4000)','[4000-5000)','[5000-6000)',,'[>=6000)']
+df_ori['N_group'] = pd.cut(df_ori['N'], bins=bins, labels=labels, right=False)
+df_ori['N_group'] = df_ori['N_group'].cat.add_categories('unknown').fillna('unknown')  
 
-#df_ori['age_group']=""
-#bins= [0,20,35,55,80]
-#labels = ['Teen(<20)','Young Adult(20,35)','Mid-aged Adult(35-55)','Older Adult(>55)']
-#df_ori['age_group'] = pd.cut(df_ori['age'], bins=bins, labels=labels, right=False)
-#df_ori['age_group'] = df_ori['age_group'].cat.add_categories('unknown').fillna('unknown')  
-
+             
 with col11:  
   with st.expander("**Registraion volume view**"): 
       st.write("""
