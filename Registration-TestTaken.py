@@ -174,15 +174,15 @@ with col11:
   title_ch2='****2D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
   
-  with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
-     fig_hist1 = px.histogram(df_1, x='N', animation_frame='YY_Mon', color='Reg_Cty', facet_row='Mode', marginal='box')
-     st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
+  #with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
+     #fig_hist1 = px.histogram(df_1, x='N', animation_frame='YY_Mon', color='Reg_Cty', facet_row='Mode', marginal='box')
+     #st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
 
   with st.expander("Bar charts:  monthly registration/TestTaken volume distribution for each region/country/year/month"): 
     sorted_df = df_1.sort_values(by=['Region', 'Country', 'Year', 'Month_N'])
     sorted_df = sorted_df.reset_index(drop=True)
     opac = st.text_input('Opacity(0-1)', '0.8')
-    fig_bar1=px.bar(sorted_df, x='YY_Mon', y='N', color=('Region', 'Country'), facet_row='Mode', opacity=float(opac), facet_row_spacing=0.01)
+    fig_bar1=px.bar(sorted_df, x='YY_Mon', y='N', color='Reg_Cty', facet_row='Mode', opacity=float(opac), facet_row_spacing=0.01)
     st.plotly_chart(fig_bar1, use_container_width=True, height=400)
     
   with st.expander("Animation:    display the volume pattern for each region/country/year/month"):  
