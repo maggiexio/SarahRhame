@@ -106,7 +106,8 @@ st.sidebar.markdown("## Define **filters:**")
 vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.N), max(df_ori.N), (min(df_ori.N), max(df_ori.N)))
 df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 
-mod_choice, mod_choice1=df_1['Mode'].drop_duplicates().tolist()
+mod_choice1=df_1['Mode'].drop_duplicates().tolist()
+mod_choice=mod_choice1
 mod_choice=mod_choice.insert(0, 'All')
 default_mod=mod_choice.index('All')
 reg_choice1=df_1['Region'].drop_duplicates().tolist()
