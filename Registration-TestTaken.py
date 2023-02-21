@@ -24,7 +24,7 @@ with col11:
   subj_1="-- Fiscal year 2020 to 2023"
   st.markdown(f'<h2 style="text-align: center;color: green;">{subj_1}</h2>',unsafe_allow_html=True) 
   st.markdown ("By: Sarah Rhame")
-  st.markdown("Data include 6694 registraion and 7105 test-taken records worldwide for fiscal years 2020 to 2022  ")
+  st.markdown("Original data set include 6694 registraion and 7105 test-taken records worldwide for fiscal years 2020 to 2022. 464 records with no volume were removed.  ")
    
 with col12:
   title_11="Hello! I am Alexa. Can I help you?"
@@ -41,7 +41,10 @@ with col12:
         st.write ("Sorry, I am not sure! Please contact xxiong@ets.org")
          
 # read in data
-df_ori=raw_data("./data/DataReorg_output.xlsx", "2020-2023")
+df_ori_0=raw_data("./data/DataReorg_output.xlsx", "2020-2023")
+df_ori=df_ori_0.dropna()
+df_ori.reset_index(drop=True)
+
 #df_ori['age_group']=""
 #bins= [0,20,35,55,80]
 #labels = ['Teen(<20)','Young Adult(20,35)','Mid-aged Adult(35-55)','Older Adult(>55)']
