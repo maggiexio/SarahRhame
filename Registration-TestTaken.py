@@ -135,28 +135,28 @@ default_mon=mon_choice.index('All')
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_select")
-else:
-   df_1=df_1.query("Mode==@mod_choice1")
+#else:
+#   df_1=df_1.query("Mode==@mod_choice1")
 reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg)  
 if reg_select != "All":
   df_1=df_1.query("Region==@reg_select")
-else:
-  df_1=df_1.query("Region==@reg_choice1")
+#else:
+#  df_1=df_1.query("Region==@reg_choice1")
 cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_select")
-else:
-  df_1=df_1.query("Country==@cty_choice1")
+#else:
+#  df_1=df_1.query("Country==@cty_choice1")
 yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
-else:
-  df_1=df_1.query("Yeare==@yy_choice1")
+#else:
+#  df_1=df_1.query("Year==@yy_choice1")
 mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
 if mon_select != "All":
   df_1=df_1.query("Month==@mon_select")
-else:
-  df_1=df_1.query("Month==@mon_choice1")
+#else:
+#  df_1=df_1.query("Month==@mon_choice1")
  
 
 # figures display, based on file df_1 which is data after filters apply
