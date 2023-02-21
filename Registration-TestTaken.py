@@ -166,7 +166,10 @@ df_1["N_scale"] = pow(df_1["N_scale"],2)
 df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month']
 df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 df_1['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_1['Month'].str.slice(0, 3)]
-   
+
+df_1_res=df_1[df_1['Mode']=="Registration"]
+df_2_taken=df_1[df_1['Mode']=="TestTaken"]  
+ 
 with col11:  
  
   title_ch1='Volume Data Visualizaion'
@@ -193,8 +196,10 @@ with col11:
     fig_ani2.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
-    fig_3=px.sunburst(df_1, color='N',  path=['Region', 'Country', 'Year', 'Month'])
-    st.plotly_chart(fig_3,   use_container_width=True, height=600)
+    fig_31=px.sunburst(df_1_res, color='N',  path=['Region', 'Country', 'Year', 'Month'])
+    st.plotly_chart(fig_31,   use_container_width=True, height=600)
+    fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
+    st.plotly_chart(fig_32,   use_container_width=True, height=600)    
   with st.expander("Tree Map:    check volume distribution for each region/country/year/month"):    
     fig_tree=px.treemap(df_1, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree, use_container_width=True, height=600)    
