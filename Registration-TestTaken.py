@@ -6,6 +6,7 @@ import csv
 import base64
 import difflib
 from calendar import month_name
+from time import strptime
  
 #######################glabal variables
 #define functions
@@ -146,20 +147,23 @@ if mon_select != "All":
 N_diff = (df_1["N"].max() - df_1["N"].min()) / 10
 df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
 df_1["N_scale"] = pow(df_1["N_scale"],2)
+
 with col11:  
   title_ch1='Volume Data Visualizaion'
   st.markdown(f'<h3 style="text-aligh: center;color: green;">{title_ch1}</h3>',unsafe_allow_html=True)
   title_ch2='****2D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
+  
   df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month']
   df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
   
   with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
     fig_hist1=px.histogram(df_1, x='YY_Mon', y='N', animation_frame='Region', color='Country', facet_col='Mode', marginal='box')
     st.plotly_chart(fig_hist1,  use_container_width=True, height=1000)
-    
+  
+  df_ori['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_ori['Month'].str.slice(0, 3)]
   with st.expander("Bar charts:  monthly registration/TestTaken volume distribution for each region/country/year/month"): 
-    sorted_df = df_1.sort_values(by=c('Region', 'Country', 'Year', 'Month'))
+    sorted_df = df_1.sort_values(by=c('Region', 'Country', 'Year', 'Month_N'))
     sorted_df = sorted_df.reset_index(drop=True)
     opac = st.text_input('Opacity(0-1)', '0.8')
     fig_bar1=px.bar(sorted_df, y='N', color=c('Region', 'Country', 'Year', 'Month'), facet_row='Mode', opacity=float(opac), facet_row_spacing=0.01)
