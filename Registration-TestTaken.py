@@ -175,7 +175,7 @@ with col11:
   
   with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
      #fig_hist1 = px.histogram(df_1, x='YY_Mon', y='N', animation_frame='Region', color='Country', facet_row='Mode', marginal='box')
-     st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
+     #st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
   
   df_ori['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_ori['Month'].str.slice(0, 3)]
   with st.expander("Bar charts:  monthly registration/TestTaken volume distribution for each region/country/year/month"): 
