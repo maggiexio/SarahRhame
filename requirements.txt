@@ -3,5 +3,5 @@ pandas
 plotly
 #matplotlib
 #openpyxl
-month_name
-strptime
+calendar
+time
