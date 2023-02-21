@@ -1,7 +1,8 @@
 streamlit
 pandas
 plotly
-matplotlib
-openpyxl
+csv
+#matplotlib
+#openpyxl
 month_name
 strptime
