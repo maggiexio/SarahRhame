@@ -186,7 +186,7 @@ with col11:
     st.plotly_chart(fig_bar1, use_container_width=True, height=400)
     
   with st.expander("Animation:    display the volume pattern for each region/country/year/month"):  
-    fig_ani1=px.bar(df_1, y='N', animation_frame=('Region', 'Country', 'Year', 'Month'), color='Mode')
+    fig_ani1=px.bar(df_1, x='YY_Mon', y='N', animation_frame='Reg_Cty', color='Mode')
     fig_ani1.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
     fig_ani2=px.scatter(df_1, y='N', x='YY_Mon', animation_frame=('Region', 'Country'), color='Mode', size='N_scale', size_max=60)
