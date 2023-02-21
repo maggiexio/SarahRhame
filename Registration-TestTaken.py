@@ -160,7 +160,8 @@ with col11:
   df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
   
   with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
-    fig_hist1=px.histogram(df_1, x='YY_Mon', y='N', animation_frame='Region', color='Country', facet_col='Mode', marginal='box')
+    fig_hist1=px.histogram(df_1, x='YY_Mon', y='N', animation_frame='Region', color='Country', 
+                           facet_col='Mode', marginal='box')
     st.plotly_chart(fig_hist1,  use_container_width=True, height=1000)
   
   df_ori['Month_N'] = ''
