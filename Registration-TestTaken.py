@@ -24,7 +24,8 @@ with col11:
   subj_1="-- Fiscal year 2020 to 2023"
   st.markdown(f'<h2 style="text-align: center;color: green;">{subj_1}</h2>',unsafe_allow_html=True) 
   st.markdown ("By: Sarah Rhame")
-  st.markdown("Original data set include 6694 registraion and 7105 test-taken records worldwide for fiscal years 2020 to 2022. 464 records with no volume were removed.  ")
+  st.markdown("Original data set include 6694 registraion and 7105 test-taken records worldwide for fiscal years 2020 to 2022. 
+              The following two type of records were removed in the clean data set: 1. 464 records with no volume; 2. 322 records in 2023 March to September.")
    
 with col12:
   title_11="Hello! I am Alexa. Can I help you?"
