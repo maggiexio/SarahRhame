@@ -174,9 +174,9 @@ with col11:
   title_ch2='****2D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
   
-  #with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
-     #fig_hist1 = px.histogram(df_1, x='N', animation_frame='YY_Mon', color='Reg_Cty', facet_row='Mode', marginal='box')
-     #st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
+  with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
+     fig_hist1 = px.histogram(df_1, x='N', animation_frame='YY_Mon', color='Reg_Cty', facet_row='Mode', marginal='box')
+     st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
 
   with st.expander("Bar charts:  monthly registration/TestTaken volume distribution for each region/country/year/month"): 
     sorted_df = df_1.sort_values(by=['Region', 'Country', 'Year', 'Month_N'])
