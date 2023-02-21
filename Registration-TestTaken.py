@@ -106,42 +106,52 @@ st.sidebar.markdown("## Define **filters:**")
 vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.N), max(df_ori.N), (min(df_ori.N), max(df_ori.N)))
 df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
 
-mod_choice=df_1['Mode'].drop_duplicates().tolist()
-mod_choice.insert(0, 'All')
+mod_choice1=df_1['Mode'].drop_duplicates().tolist()
+mod_choice=mod_choice1.insert(0, 'All')
 default_mod=mod_choice.index('All')
-reg_choice=df_1['Region'].drop_duplicates().tolist()
-reg_choice=sorted(reg_choice)
-reg_choice.insert(0, 'All')
+reg_choice1=df_1['Region'].drop_duplicates().tolist()
+reg_choice1=sorted(reg_choice1)
+reg_choice=reg_choice1.insert(0, 'All')
 default_reg=reg_choice.index('All')
-cty_choice=df_1['Country'].drop_duplicates().tolist()
-cty_choice=sorted(cty_choice)
-cty_choice.insert(0, 'All')
+cty_choice1=df_1['Country'].drop_duplicates().tolist()
+cty_choice1=sorted(cty_choice1)
+cty_choice=cty_choice1.insert(0, 'All')
 default_cty=cty_choice.index('All')
-yy_choice=df_1['Year'].drop_duplicates().tolist()
-yy_choice.insert(0, 'All')
+yy_choice1=df_1['Year'].drop_duplicates().tolist()
+yy_choice=yy_choice1.insert(0, 'All')
 default_yy=yy_choice.index('All')
-mon_choice=df_1['Month'].drop_duplicates().tolist()
+mon_choice1=df_1['Month'].drop_duplicates().tolist()
 month_lookup = list(month_name)
-mon_choice=sorted(mon_choice, key=month_lookup.index)
-mon_choice.insert(0, 'All')
+mon_choice1=sorted(mon_choice1, key=month_lookup.index)
+mon_choice=mon_choice1.insert(0, 'All')
 default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_select")
+ else
+   df_1=df_1.query("Mode==@mod_choice1")
 reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg)  
 if reg_select != "All":
   df_1=df_1.query("Region==@reg_select")
+else
+  df_1=df_1.query("Region==@reg_choice1")
 cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_select")
+else
+  df_1=df_1.query("Country==@cty_choice1")
 yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
+else
+  df_1=df_1.query("Yeare==@yy_choice1")
 mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
 if mon_select != "All":
   df_1=df_1.query("Month==@mon_select")
-
+else
+  df_1=df_1.query("Month==@mon_choice1")
+ 
 
 # figures display, based on file df_1 which is data after filters apply
 N_diff = (df_1["N"].max() - df_1["N"].min()) / 10
