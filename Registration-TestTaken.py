@@ -64,7 +64,7 @@ with col11:
       else:
         df_ori_12=df_ori_11.query("Region in @region_choice1")
       st.dataframe(df_ori_12)
-      Country_C1=df_ori_11['Country'].drop_duplicates()
+      Country_C1=df_ori_12['Country'].drop_duplicates()
       Country_C1=sorted(Country_C1)
       default_country1=['All country']
       default_country1.extend(Country_C1)
@@ -90,7 +90,7 @@ with col11:
       else:
         df_ori_22=df_ori_21.query("Region in @region_choice2")
       st.dataframe(df_ori_22)
-      Country_C2=df_ori_21['Country'].drop_duplicates()
+      Country_C2=df_ori_22['Country'].drop_duplicates()
       Country_C2=sorted(Country_C2)
       default_country2=['All country']
       default_country2.extend(Country_C2)
