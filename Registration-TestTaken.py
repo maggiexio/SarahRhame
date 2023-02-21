@@ -174,7 +174,7 @@ with col11:
   title_ch2='****2D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch2}</h4>',unsafe_allow_html=True)
   
-  with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
+  #with st.expander("Histogram: distributions of monthly registration/TestTaken volume for each region/country/year/month "):    
      #fig_hist1 = px.histogram(df_1, x='YY_Mon', y='N', animation_frame='Region', color='Country', facet_row='Mode', marginal='box')
      #st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
 
