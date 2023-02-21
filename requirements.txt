@@ -1,7 +1,6 @@
 streamlit
 pandas
 plotly
-csv
 #matplotlib
 #openpyxl
 month_name
