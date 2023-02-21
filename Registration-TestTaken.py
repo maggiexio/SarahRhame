@@ -129,7 +129,7 @@ default_mon=mon_choice.index('All')
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_select")
- else:
+else:
    df_1=df_1.query("Mode==@mod_choice1")
 reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg)  
 if reg_select != "All":
