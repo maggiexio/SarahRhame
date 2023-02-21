@@ -113,19 +113,23 @@ mod_choice.insert(0, 'All')
 default_mod=mod_choice.index('All')
 reg_choice1=df_1['Region'].drop_duplicates().tolist()
 reg_choice1=sorted(reg_choice1)
-reg_choice=reg_choice1.insert(0, 'All')
+reg_choice=reg_choice1
+reg_choice.insert(0, 'All')
 default_reg=reg_choice.index('All')
 cty_choice1=df_1['Country'].drop_duplicates().tolist()
 cty_choice1=sorted(cty_choice1)
-cty_choice=cty_choice1.insert(0, 'All')
+cty_choice=cty_choice1
+cty_choice.insert(0, 'All')
 default_cty=cty_choice.index('All')
 yy_choice1=df_1['Year'].drop_duplicates().tolist()
-yy_choice=yy_choice1.insert(0, 'All')
+yy_choice=yy_choice1
+yy_choice.insert(0, 'All')
 default_yy=yy_choice.index('All')
 mon_choice1=df_1['Month'].drop_duplicates().tolist()
 month_lookup = list(month_name)
 mon_choice1=sorted(mon_choice1, key=month_lookup.index)
-mon_choice=mon_choice1.insert(0, 'All')
+mon_choice=mon_choice1
+mon_choice.insert(0, 'All')
 default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
