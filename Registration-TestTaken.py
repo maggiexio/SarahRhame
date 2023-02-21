@@ -179,7 +179,7 @@ with col11:
      #st.plotly_chart(fig_hist1,  use_container_width=True, height=800)
 
   with st.expander("Bar charts:  monthly registration/TestTaken volume distribution for each region/country/year/month"): 
-    sorted_df = df_1.sort_values(by=('Region', 'Country', 'Year', 'Month_N'))
+    sorted_df = df_1.sort_values(by=['Region', 'Country', 'Year', 'Month_N'])
     sorted_df = sorted_df.reset_index(drop=True)
     opac = st.text_input('Opacity(0-1)', '0.8')
     fig_bar1=px.bar(sorted_df, y='N', color=c('Region', 'Country', 'Year', 'Month'), facet_row='Mode', opacity=float(opac), facet_row_spacing=0.01)
