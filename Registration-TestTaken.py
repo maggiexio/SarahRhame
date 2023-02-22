@@ -181,7 +181,7 @@ else:
 # figures display, based on file df_1 which is data after filters apply
 N_diff = (df_1["N"].max() - df_1["N"].min()) / 10
 df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
-df_1["N_scale"] = pow(df_1["N_scale"],2)
+#df_1["N_scale"] = pow(df_1["N_scale"],2)
 df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month_N'].astype(str)
 df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 
