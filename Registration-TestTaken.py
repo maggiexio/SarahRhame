@@ -14,6 +14,28 @@ from openpyxl import Workbook
 def raw_data(input_file, sheetname):
   df=pd.read_excel(open(input_file, 'rb'), sheet_name=sheetname )
   return df
+ 
+ 
+ colorscales = px.colors.named_colorscales()
+
+app = Dash(__name__)
+
+
+app.layout = html.Div([
+    html.H4('Interactive color scale'),
+    html.P("Select your palette:"),
+    dcc.Dropdown(
+        id='dropdown', 
+        options=colorscales,
+        value='viridis'
+    ),
+    dcc.Graph(id="graph"),
+])
+
+
+@app.callback(
+    Output("graph", "figure"), 
+    Input("dropdown", "value"))
 
 ##############################
 st.set_page_config(layout="wide", initial_sidebar_state="auto")
@@ -217,7 +239,7 @@ with col11:
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
-    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale=scale)
+    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale=hot)
     st.plotly_chart(fig_31,   use_container_width=True, height=600)
     fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_32,   use_container_width=True, height=600)    
