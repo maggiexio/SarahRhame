@@ -103,7 +103,7 @@ with col11:
         df_ori_22=df_ori_21
       else:
         df_ori_22=df_ori_21.query("Region in @region_choice2")
-      st.dataframe(df_ori_22)
+      st.dataframe(df_ori_22, width=8000)
       Country_C2=df_ori_22['Country'].drop_duplicates()
       Country_C2=sorted(Country_C2)
       default_country2=['All country']
