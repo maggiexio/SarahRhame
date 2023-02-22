@@ -150,32 +150,36 @@ default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg) 
-#cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
+cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
 yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
 mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
 
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_select")
+  df_2=df_1
 #else:
    #df_1=df_1.query("Mode in @mod_choice1")
  
 if reg_select != "All":
   df_1=df_1.query("Region==@reg_select")
+  df_2=df_1
 #else:
   #df_1=df_1.query("Region in @reg_choice1")
 
-#if cty_choice != "All":
-  #df_1=df_1.query("Country==@cty_select")
+if cty_choice != "All":
+  df_1=df_1.query("Country==@cty_select")
 #else:
   #df_1=df_1.query("Country in @cty_choice1")
 
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
+  df_2=df_1
 #else:
   #df_1=df_1.query("Year in @yy_choice1")
 
 if mon_select != "All":
   df_1=df_1.query("Month==@mon_select")
+  df_2=df_1
 #else:
   #df_1=df_1.query("Month in @mon_choice1")
  
@@ -217,7 +221,7 @@ with col11:
     #fig_ani1=px.bar(df_1, x='YY_Mon', y='N', animation_frame='Reg_Cty', color='Mode')
     #fig_ani1.update_layout(transition = {'duration': 30000})
     #st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
-    fig_ani2=px.scatter(df_1_2020, y='N', x='YY_Mon', animation_frame='Reg_Cty',  color='Mode', size='N_scale', size_max=60)
+    fig_ani2=px.scatter(df_2, y='N', x='YY_Mon', animation_frame='Reg_Cty',  color='Mode', size='N_scale', size_max=60)
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   
