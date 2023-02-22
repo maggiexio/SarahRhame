@@ -220,7 +220,7 @@ with col11:
     fig_ani2=px.scatter(df_1, y='N', x='YY_Mon', animation_frame='Reg_Cty', color='Mode', size='N_scale', size_max=60)
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
-  with st.expander("Pie Charts: check volume distribution for each region/country/year/month. Top plot is for registration volume and the plot in middle is for test-taken volume. The plot at bottom is for both types of volumes."):    
+  with st.expander("Pie Charts: check volume distribution for each region/country/year/month. Top left plot is for registration volume and the top right plot is for test-taken volume. The plot at bottom is for both types of volumes."):    
     fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     #st.plotly_chart(fig_31,   use_container_width=True, height=600)
     fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
