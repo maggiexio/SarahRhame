@@ -103,7 +103,27 @@ with col11:
         df_ori_22=df_ori_21
       else:
         df_ori_22=df_ori_21.query("Region in @region_choice2")
-      st.dataframe(df_ori_22, width=8000)
+      #st.dataframe(df_ori_22)
+      th_props = [
+                  ('font-size', '14px'),
+                  ('text-align', 'center'),
+                  ('font-weight', 'bold'),
+                  ('color', '#6d6d6d'),
+                  ('background-color', '#f7ffff')
+                  ]
+                               
+      td_props = [
+                  ('font-size', '12px')
+                  ]
+                                 
+      styles = [
+                  dict(selector="th", props=th_props),
+                  dict(selector="td", props=td_props)
+                 ]
+
+      # table
+      df_ori_22_display=df_ori_22.style.set_properties(**{'text-align': 'left'}).set_table_styles(styles)
+      st.table(df_ori_22_display)
       Country_C2=df_ori_22['Country'].drop_duplicates()
       Country_C2=sorted(Country_C2)
       default_country2=['All country']
