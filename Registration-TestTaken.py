@@ -143,26 +143,31 @@ mon_choice.insert(0, 'All')
 default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
+reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg) 
+cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
+yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
+mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
+
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_select")
 #else:
 #   df_1=df_1.query("Mode==@mod_choice1")
-reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg)  
+ 
 if reg_select != "All":
   df_1=df_1.query("Region==@reg_select")
 #else:
 #  df_1=df_1.query("Region==@reg_choice1")
-cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
+
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_select")
 #else:
 #  df_1=df_1.query("Country==@cty_choice1")
-yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
+
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
 #else:
 #  df_1=df_1.query("Year==@yy_choice1")
-mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
+
 if mon_select != "All":
   df_1=df_1.query("Month==@mon_select")
 #else:
@@ -178,7 +183,9 @@ df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 df_1['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_1['Month'].str.slice(0, 3)]
 
 df_1_res=df_1[df_1['Mode']=="Registration"]
-df_1_taken=df_1[df_1['Mode']=="TestTaken"]  
+df_1_taken=df_1[df_1['Mode']=="TestTaken"] 
+
+df_1_2020=df_1[df_1['Year']==2020] 
  
 with col11:  
  
@@ -202,7 +209,7 @@ with col11:
     #fig_ani1=px.bar(df_1, x='YY_Mon', y='N', animation_frame='Reg_Cty', color='Mode')
     #fig_ani1.update_layout(transition = {'duration': 30000})
     #st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
-    fig_ani2=px.scatter(df_1, y='N', x='YY_Mon', animation_frame='Reg_Cty', color='Mode', size='N_scale', size_max=60)
+    fig_ani2=px.scatter(df_1_2020, y='N', x='Month', animation_frame='Region', animation_group='Country', color='Mode', size='N_scale', size_max=60)
     fig_ani2.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
