@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly 
 import plotly.express as px
+from plotly.subplots import make_subplots
 import csv
 import base64
 import difflib
@@ -218,11 +219,17 @@ with col11:
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts: check volume distribution for each region/country/year/month. Top plot is for registration volume and the plot in middle is for test-taken volume. The plot at bottom is for both types of volumes."):    
-    fig_31=px.sunburst(df_1, color='N', path=['Region', 'Country', 'Year', 'Month'], facet_col='Mode', color_continuous_scale='Inferno')
-    st.plotly_chart(fig_31,   use_container_width=True, height=600)
+    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], facet_col='Mode', color_continuous_scale='Inferno')
+    #st.plotly_chart(fig_31,   use_container_width=True, height=600)
     fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
-    st.plotly_chart(fig_32,   use_container_width=True, height=600) 
+    #st.plotly_chart(fig_32,   use_container_width=True, height=600) 
     fig_33=px.sunburst(df_1, color='N',  path=['Mode', 'Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
+    fig_3 = make_subplots(rows=1, cols=2, specs=[
+          [{"type": "sunburst"}, {"type": "sunburst"}]
+          ])
+    fig_3.add_trace(fig_31.data[0], row=1, col=1)
+    fig_3.add_trace(fig_32.data[0], row=1, col=2)
+    st.plotly_chart(fig_3,   use_container_width=True, height=600) 
     st.plotly_chart(fig_33,   use_container_width=True, height=600) 
   with st.expander("Tree Map:    check volume distribution for each region/country/year/month"):    
     fig_tree1=px.treemap(df_1_res, color='N',  path=['Region', 'Country', 'Year', 'Month'])
