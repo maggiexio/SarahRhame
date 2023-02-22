@@ -166,8 +166,8 @@ else:
 
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_select")
-else:
-  df_1=df_1.query("Country in @cty_choice1")
+#else:
+  #df_1=df_1.query("Country in @cty_choice1")
 
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
@@ -220,6 +220,7 @@ with col11:
     fig_ani2=px.scatter(df_1, y='N', x='YY_Mon', animation_frame='Reg_Cty', color='Mode', size='N_scale', size_max=60)
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
+  
   with st.expander("Pie Charts: check volume distribution for each region/country/year/month. Top left plot is for registration volume and the top right plot is for test-taken volume. The plot at bottom is for both types of volumes."):    
     fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     #st.plotly_chart(fig_31,   use_container_width=True, height=600)
@@ -233,11 +234,11 @@ with col11:
     fig_3.add_trace(fig_32.data[0], row=1, col=2)
     st.plotly_chart(fig_3,   use_container_width=True, height=600) 
     st.plotly_chart(fig_33,   use_container_width=True, height=600) 
+  
   with st.expander("Tree Map:    check volume distribution for each region/country/year/month"):    
     fig_tree1=px.treemap(df_1, color='N',  path=['Mode', 'Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree1, use_container_width=True, height=600) 
-    fig_tree2=px.treemap(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
-    st.plotly_chart(fig_tree2, use_container_width=True, height=600)     
+        
   with st.expander("choropleth map:    check volume distribution from a choropleth map"):
     mean_df_res = df_1_res.groupby("Country").mean()
     mean_df_res.reset_index(inplace=True)
@@ -246,6 +247,7 @@ with col11:
     st.plotly_chart(fig_4,  use_container_width=True, height=600)
   title_ch3='****3D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch3}</h4>',unsafe_allow_html=True)
+  
   with st.expander("Check the relationship between volume distribution for each region/country/year/month and test-taking mode (registration vs test taken) in an interactive 3D way"):
     fig_scatter1=px.scatter_3d(df_1, y='N', x='YY_Mon', z='Reg_Cty', color='Mode', size='N_scale', size_max=50)
     st.plotly_chart(fig_scatter1,  use_container_width=True, height=600)
