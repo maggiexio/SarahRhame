@@ -166,8 +166,8 @@ else:
 
 if cty_choice != "All":
   df_1=df_1.query("Country==@cty_select")
-else:
-  df_1=df_1.query("Country in @cty_choice1")
+#else:
+  #df_1=df_1.query("Country in @cty_choice1")
 
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
