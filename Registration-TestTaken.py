@@ -229,12 +229,12 @@ with col11:
     st.plotly_chart(fig_tree1, use_container_width=True, height=600) 
     fig_tree2=px.treemap(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree2, use_container_width=True, height=600)     
-  #with st.expander("choropleth map:    check volume distribution from a choropleth map"):
-   # mean_df = df_1.groupby("Country").mean()
-    #mean_df.reset_index(inplace=True)
-   # mean_df = mean_df.rename(columns = {'index':'Country'})
-   # fig_4=px.choropleth(mean_df, color='N',  locations='Country', locationmode='ISO-3')
-   # st.plotly_chart(fig_4,  use_container_width=True, height=600)
+  with st.expander("choropleth map:    check volume distribution from a choropleth map"):
+    mean_df_res = df_1_res.groupby("Country").mean()
+    mean_df_res.reset_index(inplace=True)
+    mean_df_res = mean_df_res.rename(columns = {'index':'Country'})
+    fig_4=px.choropleth(mean_df_res, color='N',  locations='Country', locationmode='ISO-3')
+    st.plotly_chart(fig_4,  use_container_width=True, height=600)
   title_ch3='****3D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch3}</h4>',unsafe_allow_html=True)
   with st.expander("Check the relationship between volume distribution for each region/country/year/month and test-taking mode (registration vs test taken) in an interactive 3D way"):
