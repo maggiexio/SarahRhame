@@ -230,7 +230,7 @@ with col11:
     fig_tree2=px.treemap(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree2, use_container_width=True, height=600)     
   with st.expander("choropleth map:    check volume distribution from a choropleth map"):
-    mean_df_res = df_1_res.groupby("Country").mean()
+    mean_df_res = df_1_res.groupby(["Region","Country"]).mean()
     mean_df_res.reset_index(inplace=True)
     mean_df_res = mean_df_res.rename(columns = {'index':'Country'})
     fig_4=px.choropleth(mean_df_res, color='N',  locations='Country', locationmode='ISO-3')
