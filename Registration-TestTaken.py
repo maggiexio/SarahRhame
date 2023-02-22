@@ -150,7 +150,7 @@ default_mon=mon_choice.index('All')
 
 mod_select = st.sidebar.selectbox('Select mode:', mod_choice, index=default_mod)
 reg_select = st.sidebar.selectbox('Select region:', reg_choice, index=default_reg) 
-cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
+#cty_select = st.sidebar.selectbox('Select country:', cty_choice, index=default_cty)
 yy_select = st.sidebar.selectbox('Select year:', yy_choice, index=default_yy)
 mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon)
 
@@ -164,8 +164,8 @@ if reg_select != "All":
 #else:
   #df_1=df_1.query("Region in @reg_choice1")
 
-if cty_choice != "All":
-  df_1=df_1.query("Country==@cty_select")
+#if cty_choice != "All":
+  #df_1=df_1.query("Country==@cty_select")
 #else:
   #df_1=df_1.query("Country in @cty_choice1")
 
