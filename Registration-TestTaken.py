@@ -233,7 +233,7 @@ with col11:
     mean_df_res = df_1_res.groupby(["Region","Country"]).mean()
     mean_df_res.reset_index(inplace=True)
     mean_df_res = mean_df_res.rename(columns = {'index':'Country'})
-    fig_4=px.choropleth(mean_df_res, color='N',  locations='Country', locationmode='ISO-3')
+    fig_4=px.choropleth(mean_df_res, color='N',  locations='Country', locationmode='country names')
     st.plotly_chart(fig_4,  use_container_width=True, height=600)
   title_ch3='****3D interactive plots********'
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch3}</h4>',unsafe_allow_html=True)
