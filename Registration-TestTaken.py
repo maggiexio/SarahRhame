@@ -119,6 +119,7 @@ with col11:
          
 # Filters
 df_1=df_ori
+df_2=df_1
 st.sidebar.markdown("## Define **filters:**")
 vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.N), max(df_ori.N), (min(df_ori.N), max(df_ori.N)))
 df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
