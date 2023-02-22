@@ -234,7 +234,7 @@ with col11:
     st.plotly_chart(fig_3,   use_container_width=True, height=600) 
     st.plotly_chart(fig_33,   use_container_width=True, height=600) 
   with st.expander("Tree Map:    check volume distribution for each region/country/year/month"):    
-    fig_tree1=px.treemap(df_1, color='N',  path=['Mode', 'Region', 'Country', 'Year', 'Month'], facet_col='Mode')
+    fig_tree1=px.treemap(df_1, color='N',  path=['Mode', 'Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree1, use_container_width=True, height=600) 
     fig_tree2=px.treemap(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_tree2, use_container_width=True, height=600)     
