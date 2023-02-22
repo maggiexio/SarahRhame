@@ -218,7 +218,7 @@ with col11:
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts: check volume distribution for each region/country/year/month. Top plot is for registration volume and the plot in middle is for test-taken volume. The plot at bottom is for both types of volumes."):    
-    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
+    fig_31=px.sunburst(df_1, color='N', path=['Region', 'Country', 'Year', 'Month'], , facet_col='Mode', color_continuous_scale='Inferno')
     st.plotly_chart(fig_31,   use_container_width=True, height=600)
     fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     st.plotly_chart(fig_32,   use_container_width=True, height=600) 
@@ -232,7 +232,7 @@ with col11:
   with st.expander("choropleth map:    check volume distribution from a choropleth map"):
     mean_df = df_1.groupby(["Region","Country"]).mean()
     mean_df.reset_index(inplace=True)
-    mean_df = mean_df_res.rename(columns = {'index':'Country'})
+    mean_df = mean_df.rename(columns = {'index':'Country'})
     fig_4=px.choropleth(mean_df, color='N',  locations='Country', locationmode='country names', facet_col='Mode')
     st.plotly_chart(fig_4,  use_container_width=True, height=600)
   title_ch3='****3D interactive plots********'
