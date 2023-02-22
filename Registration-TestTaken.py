@@ -158,13 +158,11 @@ mon_select = st.sidebar.selectbox('Select month:', mon_choice, index=default_mon
 
 if mod_select != "All":
   df_1=df_1.query("Mode==@mod_select")
-  df_2=df_1
 #else:
    #df_1=df_1.query("Mode in @mod_choice1")
  
 if reg_select != "All":
   df_1=df_1.query("Region==@reg_select")
-  df_2=df_1
 #else:
   #df_1=df_1.query("Region in @reg_choice1")
 
@@ -175,13 +173,11 @@ if cty_choice != "All":
 
 if yy_select != "All":
   df_1=df_1.query("Year==@yy_select")
-  df_2=df_1
 #else:
   #df_1=df_1.query("Year in @yy_choice1")
 
 if mon_select != "All":
   df_1=df_1.query("Month==@mon_select")
-  df_2=df_1
 #else:
   #df_1=df_1.query("Month in @mon_choice1")
  
