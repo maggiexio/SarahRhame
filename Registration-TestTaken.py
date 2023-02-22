@@ -50,6 +50,10 @@ df_t=df_ori_1[df_ori_1['Year']==2023]
 df_t=df_t[df_t['Month'].isin (['March','April','May', 'June','July','August', 'September'])]              
 df_ori=pd.concat([df_ori_1, df_t, df_t]).drop_duplicates(keep=False)
 df_ori = df_ori.reset_index(drop=True)
+# transder month full name to month number
+df_ori['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_ori['Month'].str.slice(0, 3)]
+#sort the whole data by region/country/year/month
+df_ori.sort_values(by=['Mode', 'Region', 'Country', 'Year', 'Month_N'])
               
 df_ori['N_group']=""
 bins= [1,200,400,600,800,1000,2000,3000,4000,5000,6000,7000]
@@ -180,7 +184,7 @@ df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
 df_1["N_scale"] = pow(df_1["N_scale"],2)
 df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month']
 df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
-df_1['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_1['Month'].str.slice(0, 3)]
+
 
 df_1_res=df_1[df_1['Mode']=="Registration"]
 df_1_taken=df_1[df_1['Mode']=="TestTaken"] 
