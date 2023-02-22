@@ -15,7 +15,7 @@ def raw_data(input_file, sheetname):
   df=pd.read_excel(open(input_file, 'rb'), sheet_name=sheetname )
   return df
  
- colorscales = px.colors.named_colorscales()
+colorscales = px.colors.named_colorscales()
 
 app = Dash(__name__)
 
