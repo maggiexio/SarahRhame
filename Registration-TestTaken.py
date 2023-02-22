@@ -182,7 +182,7 @@ else:
 N_diff = (df_1["N"].max() - df_1["N"].min()) / 10
 df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
 df_1["N_scale"] = pow(df_1["N_scale"],2)
-df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month']
+df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month_N'].astype(str
 df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 
 
@@ -213,7 +213,7 @@ with col11:
     #fig_ani1=px.bar(df_1, x='YY_Mon', y='N', animation_frame='Reg_Cty', color='Mode')
     #fig_ani1.update_layout(transition = {'duration': 30000})
     #st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
-    fig_ani2=px.scatter(df_1, y='N', x='Month', animation_group='Reg_Cty', color='Mode', size='N_scale', size_max=60)
+    fig_ani2=px.scatter(df_1, y='N', x='YY_Mon', animation_frame='Reg_Cty', color='Mode', size='N_scale', size_max=60)
     fig_ani2.update_layout(transition = {'duration': 30000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
