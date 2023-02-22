@@ -186,7 +186,7 @@ df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
 df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month_N'].astype(str)
 df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 
-
+df_1.sort_values(by=['Mode', 'Region', 'Country', 'Year', 'Month_N'])
 df_1_res=df_1[df_1['Mode']=="Registration"]
 df_1_taken=df_1[df_1['Mode']=="TestTaken"] 
 
@@ -237,4 +237,4 @@ with col11:
   st.markdown(f'<h4 style="text-aligh: center;color: green;">{title_ch3}</h4>',unsafe_allow_html=True)
   with st.expander("Check the relationship between volume distribution for each region/country/year/month and test-taking mode (registration vs test taken) in an interactive 3D way"): 
     fig_scatter1=px.scatter_3d(df_1, y='N', x='YY_Mon', z='Reg_Cty', color='Mode', size='N_scale', size_max=50)
-    st.plotly_chart(fig_scatter1,  use_container_width=True, height=3000)
+    st.plotly_chart(fig_scatter1,  use_container_width=True, height=6000)
