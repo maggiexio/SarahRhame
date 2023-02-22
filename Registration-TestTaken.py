@@ -218,7 +218,7 @@ with col11:
     fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
-    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale==px.colors.qualitative.Alphabet)
+    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     st.plotly_chart(fig_31,   use_container_width=True, height=600)
     fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'])
     st.plotly_chart(fig_32,   use_container_width=True, height=600)    
