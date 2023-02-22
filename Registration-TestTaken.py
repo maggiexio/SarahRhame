@@ -189,7 +189,7 @@ df_1["N_scale"] = (df_1["N"] - df_1["N"].min()) / N_diff + 1
 df_1['YY_Mon']=df_1['Year'].astype(str)+"_"+df_1['Month_N'].astype(str)
 df_1['Reg_Cty']=df_1['Region']+"_"+df_1['Country']
 
-df_1.sort_values(by=['Mode', 'Region', 'Country', 'Year', 'Month_N'])
+#df_1.sort_values(by=['Mode', 'Region', 'Country', 'Year', 'Month_N'])
 df_1_res=df_1[df_1['Mode']=="Registration"]
 df_1_taken=df_1[df_1['Mode']=="TestTaken"] 
 
