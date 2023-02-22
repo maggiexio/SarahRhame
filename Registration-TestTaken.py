@@ -16,10 +16,7 @@ def raw_data(input_file, sheetname):
   return df
  
 colorscales = px.colors.named_colorscales()
-
 app = Dash(__name__)
-
-
 app.layout = html.Div([
     html.H4('Interactive color scale'),
     html.P("Select your palette:"),
@@ -30,11 +27,6 @@ app.layout = html.Div([
     ),
     dcc.Graph(id="graph"),
 ])
-
-
-@app.callback(
-    Output("graph", "figure"), 
-    Input("dropdown", "value"))
 
 ##############################
 st.set_page_config(layout="wide", initial_sidebar_state="auto")
