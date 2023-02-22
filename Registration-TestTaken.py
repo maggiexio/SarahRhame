@@ -214,7 +214,7 @@ with col11:
     #fig_ani1.update_layout(transition = {'duration': 30000})
     #st.plotly_chart(fig_ani1,  use_container_width=True, height=600)
     fig_ani2=px.scatter(df_1, y='N', x='YY_Mon', animation_frame='Reg_Cty', color='Mode', size='N_scale', size_max=60)
-    fig_ani2.update_layout(transition = {'duration': 30000})
+    fig_ani2.update_layout(transition = {'duration': 10000})
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   with st.expander("Pie Charts:    check volume distribution for each region/country/year/month"):    
     fig_31=px.sunburst(df_1_res, color='N',  path=['Region', 'Country', 'Year', 'Month'])
