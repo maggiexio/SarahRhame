@@ -225,11 +225,11 @@ with col11:
     st.plotly_chart(fig_ani2,  use_container_width=True, height=600)   
   
   with st.expander("Pie Charts: check volume distribution for each region/country/year/month. Top left plot is for registration volume and the top right plot is for test-taken volume. The plot at bottom is for both types of volumes."):    
-    fig_31=px.sunburst(df_1_res, color='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
+    fig_31=px.sunburst(df_1_res, color='N', values='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     #st.plotly_chart(fig_31,   use_container_width=True, height=600)
-    fig_32=px.sunburst(df_1_taken, color='N',  path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
+    fig_32=px.sunburst(df_1_taken, color='N', values='N', path=['Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     #st.plotly_chart(fig_32,   use_container_width=True, height=600) 
-    fig_33=px.sunburst(df_1, color='N',  path=['Mode', 'Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
+    fig_33=px.sunburst(df_1, color='N', values='N', path=['Mode', 'Region', 'Country', 'Year', 'Month'], color_continuous_scale='Inferno')
     fig_3 = make_subplots(rows=1, cols=2, specs=[
           [{"type": "sunburst"}, {"type": "sunburst"}]
           ])
