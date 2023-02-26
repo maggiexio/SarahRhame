@@ -49,7 +49,7 @@ df_ori_1=df_ori_0.dropna()
 df_ori_1.reset_index(drop=True)
 #remove records of 2023/3 to 2023/9
 df_t=df_ori_1[df_ori_1['Year']==2023]
-df_t=df_t[df_t['Month'].isin (['Febuary', 'March','April','May', 'June','July','August', 'September'])]              
+df_t=df_t[df_t['Month'].isin (['February', 'March','April','May', 'June','July','August', 'September'])]              
 df_ori=pd.concat([df_ori_1, df_t, df_t]).drop_duplicates(keep=False)
 df_ori = df_ori.reset_index(drop=True)
 # transder month full name to month number
