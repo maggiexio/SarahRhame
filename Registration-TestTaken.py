@@ -58,10 +58,10 @@ df_ori['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_ori['Month'].str.
 df_ori.sort_values(by=['Mode', 'Region', 'Country', 'Year', 'Month_N'])
               
 df_ori['N_group']=""
-bins= [1,1000,3000,6000,9000,12000,15000,30000,40000,50000,60000,70000]
-labels = ['(level 1: <1000)','level 2: [1000,3000)','level 3: [3000-6000)','level 4: [6000-9000)','level 5: [9000-12000)','level 6: [12000-15000)','level 7: [15000-30000)','level 8: [30000-40000)','level 9: [40000-50000)','level 10: [50000-60000)','level 11: [>=60000)']
-df_ori['N_group'] = pd.cut(df_ori['N'], bins=bins, labels=labels, right=False)
-df_ori['N_group'] = df_ori['N_group'].cat.add_categories('unknown').fillna('unknown')  
+#bins= [1,1000,3000,6000,9000,12000,15000,30000,40000,50000,60000,70000]
+#labels = ['(level 1: <1000)','level 2: [1000,3000)','level 3: [3000-6000)','level 4: [6000-9000)','level 5: [9000-12000)','level 6: [12000-15000)','level 7: [15000-30000)','level 8: [30000-40000)','level 9: [40000-50000)','level 10: [50000-60000)','level 11: [>=60000)']
+#df_ori['N_group'] = pd.cut(df_ori['N'], bins=bins, labels=labels, right=False)
+#df_ori['N_group'] = df_ori['N_group'].cat.add_categories('unknown').fillna('unknown')  
 
              
 with col11:  
