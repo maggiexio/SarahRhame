@@ -59,7 +59,7 @@ df_ori['Month_N'] = [strptime(str(x), '%b').tm_mon for x in df_ori['Month'].str.
 #sort the whole data by region/country/year/month
 df_ori.sort_values(by=['Mode', 'Region', 'Country', 'Year', 'Month_N'])
               
-df_ori['N_group']=""
+#df_ori['N_group']=""
 #bins= [1,1000,3000,6000,9000,12000,15000,30000,40000,50000,60000,70000]
 #labels = ['(level 1: <1000)','level 2: [1000,3000)','level 3: [3000-6000)','level 4: [6000-9000)','level 5: [9000-12000)','level 6: [12000-15000)','level 7: [15000-30000)','level 8: [30000-40000)','level 9: [40000-50000)','level 10: [50000-60000)','level 11: [>=60000)']
 #df_ori['N_group'] = pd.cut(df_ori['N'], bins=bins, labels=labels, right=False)
@@ -121,11 +121,9 @@ with col11:
          
 # Filters
 df_1=df_ori
-df_2=df_1
 st.sidebar.markdown("## Define **filters:**")
 vol_1, vol_2 = st.sidebar.slider("Monthly volume range: ", min(df_ori.N), max(df_ori.N), (min(df_ori.N), max(df_ori.N)))
 df_1=df_1.query("N>=@vol_1 and N<=@vol_2")
-df_2=df_1
 
 mod_choice1=df_1['Mode'].drop_duplicates().tolist()
 mod_choice=mod_choice1
