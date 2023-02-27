@@ -51,7 +51,7 @@ df_ori_1.reset_index(drop=True)
 df_t=df_ori_1[df_ori_1['Year']==2023]
 df_t=df_t[df_t['Month'].isin (['February', 'March','April','May', 'June','July','August', 'September'])]              
 df_ori=pd.concat([df_ori_1, df_t, df_t]).drop_duplicates(keep=False)
-df_t1=df_t1[df_t['Year'].isin (['2016', '2017','2019'])]
+df_t1=df_ori[df_ori['Year'].isin (['2016', '2017','2019'])]
 df_ori=pd.concat([df_ori, df_t1, df_t1]).drop_duplicates(keep=False)
 df_ori = df_ori.reset_index(drop=True)
 # transder month full name to month number
