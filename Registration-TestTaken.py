@@ -43,7 +43,7 @@ with col12:
         st.write ("Sorry, I am not sure! Please contact xxiong@ets.org")
          
 # read in data
-df_ori_0=raw_data("./data/DataReorg_output-merge HK MC to China.xlsx", "2018-2023")
+df_ori_0=raw_data("./data/DataReorg_output-merge HK MC to China.xlsx", "2017-2023")
 #remove NA records              
 df_ori_1=df_ori_0.dropna()
 df_ori_1.reset_index(drop=True)
